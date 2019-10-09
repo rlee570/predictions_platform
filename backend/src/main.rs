@@ -10,23 +10,22 @@ extern crate serde_derive;
 extern crate rocket_cors;
 
 use rocket::http::Method;
-use rocket_cors::{AllowedHeaders,AllowedOrigins,Error,Cors,CorsOptions};
 use rocket_contrib::json::JsonValue;
-
+use rocket_cors::{AllowedHeaders, AllowedOrigins, Cors, CorsOptions, Error};
 
 mod user;
 use user::User;
 
-fn make_cors() -> Cors{
+fn make_cors() -> Cors {
     let allowed_origins = AllowedOrigins::some_exact(&[
         "http://localhost:8000",
         "http://localhost:3000",
         "http://0.0.0.0:8000",
         "http://0.0.0.0:3000",
         "http://127.0.0.1:8000",
-        "http://127.0.0.1:3000"
+        "http://127.0.0.1:3000",
     ]);
-    CorsOptions{
+    CorsOptions {
         allowed_origins,
         allowed_methods: vec![Method::Get].into_iter().map(From::from).collect(),
         allowed_headers: AllowedHeaders::some(&[
@@ -36,7 +35,9 @@ fn make_cors() -> Cors{
         ]),
         allow_credentials: true,
         ..Default::default()
-    }.to_cors().expect("error while building CORS")
+    }
+    .to_cors()
+    .expect("error while building CORS")
 }
 
 #[get("/")]
