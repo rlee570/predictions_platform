@@ -17,4 +17,19 @@ impl User {
             points,
         }
     }
+    pub fn set_first_name(&mut self,first_name:&str){
+        self.first_name = first_name.to_string();
+    }
+
+    pub fn set_last_name(&mut self,last_name:&str){
+        self.last_name = last_name.to_string();
+    }
+
+    pub fn set_email(&mut self, email:&str){
+        self.email = email.to_string();
+    }
+
+    pub fn set_points(&mut self,points:i32){
+        self.points = points
+    }
 }

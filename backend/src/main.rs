@@ -47,14 +47,9 @@ fn index() -> &'static str {
 
 #[get("/<id>")]
 fn get_user(id: i32) -> JsonValue {
-    let user = User::new(id, "Some", "Person", "some_person@email.com", 100);
-    json!({
-        "id":user.id,
-        "first_name":user.first_name,
-        "last_name":user.last_name,
-        "email":user.email,
-        "points":user.points
-    })
+    let mut user = User::new(id, "Some", "Person", "some_person@email.com", 100);
+    user.set_first_name("Jeff");
+    json!(user)
 }
 
 fn main() {
